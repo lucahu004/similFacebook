@@ -1,7 +1,9 @@
 <div>
-    <p> {{post.id}}
-        {{post.autore}}
-        {{post.testo}}
-        {{post.like}}
-    </p>
+    <div  *ngFor="let p of post">
+        <p> {{p.id}}
+            {{p.autore}}
+            {{p.testo}}
+            {{p.like}}
+        </p>
+    </div>
 </div>

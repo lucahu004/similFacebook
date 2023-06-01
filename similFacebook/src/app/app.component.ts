@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { Post } from './post/post.model';
 import { Observable } from 'rxjs';
-import { ServiceResponse } from './serviceresponce.model'
 import { HttpClient } from '@angular/common/http';
+import { Post, PostEComm } from './models/postEcomm.models';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +9,11 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  posts: Post[]
-  oServiceResponse: Observable<ServiceResponse>;
-  serviceURL: string = 'https://my-json-server.typicode.com/PaoloCarugati/facebook/posts';
+  data: PostEComm
+  oPC: Observable<PostEComm>;
+  serviceURL: string = 'https://my-json-server.typicode.com/lucahu004/dbFacebook/db';
+  error_appear: boolean
+  post_height: number;
 
   constructor(public http: HttpClient) {
     this.makeTypedRequest();
@@ -21,8 +22,8 @@ export class AppComponent {
   makeTypedRequest() : void
   {
     
-    this.oServiceResponse = this.http.get<ServiceResponse>(this.serviceURL);
-    this.oServiceResponse.subscribe(d => {this.posts = d.data;});
+    this.oPC = this.http.get<PostEComm>(this.serviceURL);
+    this.oPC.subscribe(d => {this.data = d});
   } 
 }
 
