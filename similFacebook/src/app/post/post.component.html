@@ -1,9 +1,12 @@
-<div>
-    <div  *ngFor="let p of post">
-        <p> {{p.id}}
-            {{p.autore}}
-            {{p.testo}}
-            {{p.like}}
-        </p>
-    </div>
-</div>
+<div class="card-header">
+  </div>
+  <div *ngFor="let p of post" class="card-body">
+    <span> {{ p.autore }} </span>
+   <!-- right here -->
+    <span>{{p.testo}}</span>
+    <div class="card-footer">
+        <div>
+           <button class="like-style" (click)="null">Like</button>
+         </div>
+       </div>
+  </div>

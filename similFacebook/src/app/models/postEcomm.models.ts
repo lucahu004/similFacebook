@@ -1,4 +1,7 @@
 export class PostEComm{
+    push(arg0: PostEComm) {
+      throw new Error('Method not implemented.');
+    }
     posts: Post[]
     commenti: Comment[]
 }
@@ -8,13 +11,15 @@ export class Post{
     autore: string;
     testo: string;
     like: number;
+    push: any;
 
-    constructor(id:number, autore: string, testo: string, like:number) {
-        this.id = id
+    constructor(autore: string, testo: string, like?:number, id?:number) {
+        this.id = id || 0
         this.autore = autore
         this.testo = testo
-        this.like = like
+        this.like = like || 0
     }
+
 }
 
 export class Comment{

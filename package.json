@@ -1,6 +1,9 @@
 {
   "dependencies": {
+    "-": "^0.0.1",
+    "@igniteui/angular-schematics": "^16.0.1201",
     "@ng-bootstrap/ng-bootstrap": "^14.1.1",
-    "bootstrap": "^5.3.0"
+    "bootstrap": "^5.3.0",
+    "g": "^2.0.1"
   }
 }
