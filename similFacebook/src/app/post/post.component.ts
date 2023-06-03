@@ -17,6 +17,11 @@ export class PostComponent {
     this.error_appear = false
   }
   
+  /*add_like(){
+    this.post.add_like()
+    return false
+  }*/
+
   comment_section_appear(){
 
     //per "resettare" la scritta errore quando nascondo e faccio riapparire la sezione dei commenti

@@ -2,16 +2,18 @@
     <form class="jubotron">
         <h3 class="display-4">Aggiungi un post</h3>
         <div class="form-group">
-            <label for="autore">Autore</label>
-            <input name="Autore" #newautore class="form-control">
+            <input type="text" placeholder="autore"  #newautore id="autore" class="form-control" >
         </div>
+        <br>
         <div class="form-group">
-            <label for="testo">Testo</label>
-            <textarea name="testo" #newtesto class="form-control"></textarea>
+            <textarea #newtesto id="testo" placeholder="testo" class="form-control" ></textarea>
         </div>
         <button (click)="posta(newautore, newtesto)" class="btn btn-primary">
             Posta
         </button>
 
-
-<app-post [post] = "data.posts"></app-post>
+            
+      <div class="container">
+        <app-post [post] = "data.posts"></app-post>
+    
+      </div>

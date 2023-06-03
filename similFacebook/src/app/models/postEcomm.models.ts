@@ -1,7 +1,4 @@
 export class PostEComm{
-    push(arg0: PostEComm) {
-      throw new Error('Method not implemented.');
-    }
     posts: Post[]
     commenti: Comment[]
 }
@@ -19,6 +16,11 @@ export class Post{
         this.testo = testo
         this.like = like || 0
     }
+
+    add_like(): void{
+        this.like += 1
+    }
+    
 
 }
 
