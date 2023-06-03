@@ -17,7 +17,7 @@ export class Post{
         this.like = like || 0
     }
 
-    add_like(): void{
+    add_like(){
         this.like += 1
     }
     

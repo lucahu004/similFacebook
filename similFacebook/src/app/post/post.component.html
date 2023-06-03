@@ -2,21 +2,23 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
-<div *ngFor="let p of post">
+<div *ngFor="let p of post, let i = index">
     <h3>{{this.p.autore}}</h3>
     <p>{{this.p.testo}}</p>
     <p style="float: right;">{{this.p.like}}</p>
-        <button style="float: right;" class="like-style" (click)="null"><i class="fa fa-heart" style="font-size:16px"></i></button>
-        <button (click)="comment_section_appear()" class="comment-style">commenti</button>
+    <span type="button" style="float: right;" class="like-style" (click)="add_like(i)">
+      <i class="fa fa-thumbs-up" style="font-size: 17px"></i>
+    </span>
+    <a href="#" type="button" (click)="comment_section_appear(i)" class="comment-style">commenti</a>
 
     <br *ngIf="comment_appear">
     <br *ngIf="comment_appear">
     
-    <div class="card" *ngIf="comment_appear">
+    <div class="card" *ngIf="comment_appear === i">
 
         <div>
-            <div *ngFor="let c of post" class="card m-2">
-                <p class="px-2 py-1 my-auto">{{c.testo}}</p>
+            <div class="card m-2">
+                <p class="px-2 py-1 my-auto">{{p.testo}}</p>
             </div>
             
         </div>
@@ -33,6 +35,6 @@
     </div>
 
 
-    <br *ngIf="comment_appear == false">
+    <br *ngIf="comment_appear == 0">
     <hr>
 </div>

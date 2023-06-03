@@ -8,29 +8,30 @@ import { Post } from '../models/postEcomm.models';
 })
 export class PostComponent {
   @Input() post: Post[];
-  comment_appear:boolean
+  @Input() comment: Comment[];
+  comment_appear:number
   error_appear:boolean
   router: any;
 
   constructor(){
-    this.comment_appear = false
+    this.comment_appear = -1
     this.error_appear = false
   }
   
-  add_like(){
-    this.post.add_like()
-    return false
+  add_like(index: number){
+    if (this.post.length > index) {
+      this.post[index].like += 1;
+    }
   }
 
-  comment_section_appear(){
+  comment_section_appear(index: number){
 
-    //per "resettare" la scritta errore quando nascondo e faccio riapparire la sezione dei commenti
-    this.error_appear = false
+    this.error_appear = false;
 
-    if (this.comment_appear){
-      this.comment_appear = false
-    }else{
-      this.comment_appear = true
+    if (this.comment_appear === index) {
+      this.comment_appear = -1; // Nascondi la sezione dei commenti
+    } else {
+      this.comment_appear = index; // Mostra la sezione dei commenti per il post specifico
     }
   }
 

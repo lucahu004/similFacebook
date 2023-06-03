@@ -1,20 +1,26 @@
-<div class='container'>
+<div class="container">
     <form class="jubotron">
-        <h3 class="display-4">Aggiungi un post</h3>
-        <div class="form-group">
-            <input type="text" placeholder="autore"  #newautore id="autore" class="form-control" >
-        </div>
-        <br>
-        <div class="form-group">
-            <textarea #newtesto id="testo" placeholder="testo" class="form-control" ></textarea>
-        </div>
-        <br>
-        <button style="float: right;" (click)="posta(newautore, newtesto)" class="btn btn-primary">
-            Posta
-        </button>
-
-            
-      <div class="container">
-        <app-post [post] = "data.posts"></app-post>
-    
+      <h3 class="display-4">Aggiungi un post</h3>
+      <div class="form-group">
+        <input type="text" placeholder="autore" #newautore id="autore" class="form-control">
       </div>
+      <br>
+      <div class="form-group">
+        <textarea #newtesto id="testo" placeholder="testo" class="form-control"></textarea>
+      </div>
+      <br>
+      <button type="button" style="float: right;" (click)="posta(newautore, newtesto)" class="btn btn-primary">
+        Posta
+      </button>
+    </form>
+  
+    <div class="container">
+      <app-post [post]="data.posts" ></app-post>
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  

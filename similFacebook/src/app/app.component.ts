@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Post, PostEComm } from './models/postEcomm.models';
+import { Post, PostEComm, Comment} from './models/postEcomm.models';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,8 @@ import { Post, PostEComm } from './models/postEcomm.models';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  post: Post
+  post: Post[]= []
+  comment: Comment[]= []
   data: PostEComm
   oPC: Observable<PostEComm>;
   serviceURL: string = 'https://my-json-server.typicode.com/lucahu004/dbFacebook/db';
@@ -24,34 +25,25 @@ export class AppComponent {
   {
     
     this.oPC = this.http.get<PostEComm>(this.serviceURL);
-    this.oPC.subscribe(d => {this.data = d});
+    this.oPC.subscribe(d => {this.data = d;
+      this.post = this.data.posts || [];
+      this.comment = this.data.commenti || [];
+    });
   } 
 
-
-  addPost(autore: HTMLInputElement,testo: HTMLInputElement): boolean {
-    console.log(`Adding post title: ${autore.value} and text: ${testo.value}`);
-    this.post.push(new Post(autore.value, testo.value));
-    //pulisco i campi della form
-    autore.value = '';
-    testo.value = '';
-    return false;
-  }
-
   posta(autore: HTMLInputElement, testo: HTMLTextAreaElement) {
-    if (autore.value != '' && testo.value != ''){
-      this.post_height = 470
-      this.error_appear = false
-
-
-      this.post.push(new Post(autore.value, testo.value))
-      autore.value = ''
-      testo.value = ''
-    }else{
-      this.error_appear = true
-      this.post_height = 510
-
-    }
-
+    if (autore.value !== '' && testo.value !== '') {
+      console.log('adding post author and text')
+      this.post_height = 470;
+      this.error_appear = false;
   
+      this.post.push(new Post(autore.value, testo.value));
+      autore.value = '';
+      testo.value = '';
+    } else {
+      this.error_appear = true;
+      this.post_height = 510;
+    }
+  } 
 }
-}
+
