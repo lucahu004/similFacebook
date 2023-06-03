@@ -1,8 +1,9 @@
 <div class="container">
+  <div class="card">
     <form class="jubotron">
       <h3 class="display-4">Aggiungi un post</h3>
       <div class="form-group">
-        <input type="text" placeholder="autore" #newautore id="autore" class="form-control">
+        <input type="text" style="width: 600px;" placeholder="autore" #newautore id="autore" class="form-control">
       </div>
       <br>
       <div class="form-group">
@@ -12,6 +13,8 @@
       <button type="button" style="float: right;" (click)="posta(newautore, newtesto)" class="btn btn-primary fa fa-paper-plane">
       </button>
     </form>
+  </div>
+    
   
     <div class="container">
       <app-post [post]="data.posts" [comment]="data.comments"></app-post>
