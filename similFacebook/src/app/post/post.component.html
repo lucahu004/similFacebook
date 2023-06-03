@@ -1,15 +1,21 @@
 <br>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
-
-<div *ngFor="let p of post, let i = index">
-    <h3>{{this.p.autore}}</h3>
-    <p>{{this.p.testo}}</p>
-    <p style="float: right;">{{this.p.like}}</p>
-    <span type="button" style="float: right;" class="like-style" (click)="add_like(i)">
-      <i class="fa fa-thumbs-up" style="font-size: 17px"></i>
-    </span>
-    <a href="#" type="button" (click)="comment_section_appear(i)" class="comment-style">commenti</a>
+<br>
+<div class="card" *ngFor="let p of post, let i = index" >
+    <div  class="form-floating m-3 mb-0">
+        <h3>{{this.p.autore}}</h3>
+        <hr>
+        <p>{{this.p.testo}}</p>
+        <hr>
+        <p style="float: right; color:blue">{{this.p.like}}</p>
+        <span type="button" style="float: right; color:blue" class="like-style" (click)="add_like(i)">
+          <i class="fa fa-thumbs-up" style="font-size: 17px"></i>
+        </span>
+        <a href="#" type="button" style="text-decoration: none; color: blue; font-size: 17px;" (click)="comment_section_appear(i)" class="fas fa-comment"></a>
+    </div>
+    
 
     <br *ngIf="comment_appear">
     <br *ngIf="comment_appear">
@@ -17,24 +23,29 @@
     <div class="card" *ngIf="comment_appear === i">
 
         <div>
-            <div class="card m-2">
-                <p class="px-2 py-1 my-auto">{{p.testo}}</p>
+            <div *ngFor="let c of comment" class="card m-2">
+                <p class="px-2 py-1 my-auto"><strong>{{c.autore}}</strong> &nbsp; {{c.testo}}</p>
             </div>
             
         </div>
 
         <div class="form-floating m-3 mb-0">
-            <textarea class="form-control" placeholder="Scrivi un commento" #addComment id="commento" style="height: 100px"></textarea>
-            <label for="commento" style="color: rgb(110, 117, 124);">Scrivi un commento</label>
-        </div>
+            <div class="form-group">
+                <input type="text" placeholder="autore" #newautore id="autore" class="form-control">
+              </div>
+              <br>
+              <div class="form-group">
+                <textarea #newtesto id="testo" placeholder="testo" class="form-control"></textarea>
+              </div>
 
-        <button (click)="add_comment(addComment)" type="button" class="btn btn-primary m-2">Send comment</button>
+        <button (click)="add_comment(newautore, newtesto, p.id)" type="button" class="btn btn-primary m-2">Send comment</button>
         <p *ngIf="error_appear" class="text-center text-danger mt-2" style="font-weight: bold;">Non puoi inviare commenti vuoti</p>
         
         
+        
     </div>
+    <hr>
 
 
     <br *ngIf="comment_appear == 0">
-    <hr>
 </div>

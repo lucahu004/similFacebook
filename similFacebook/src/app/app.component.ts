@@ -10,7 +10,7 @@ import { Post, PostEComm, Comment} from './models/postEcomm.models';
 })
 export class AppComponent {
   post: Post[]= []
-  comment: Comment[]= []
+  comment: Comment[][]
   data: PostEComm
   oPC: Observable<PostEComm>;
   serviceURL: string = 'https://my-json-server.typicode.com/lucahu004/dbFacebook/db';
@@ -26,8 +26,8 @@ export class AppComponent {
     
     this.oPC = this.http.get<PostEComm>(this.serviceURL);
     this.oPC.subscribe(d => {this.data = d;
-      this.post = this.data.posts || [];
-      this.comment = this.data.commenti || [];
+      this.post = this.data?.posts || [];
+      this.comment = this.data.comments ? this.data.comments.map(() => []) : [];;
     });
   } 
 
@@ -37,7 +37,11 @@ export class AppComponent {
       this.post_height = 470;
       this.error_appear = false;
   
-      this.post.push(new Post(autore.value, testo.value));
+      if (Array.isArray(this.post)) {
+        this.post.push(new Post(autore.value, testo.value));
+      } else {
+        this.post = [new Post(autore.value, testo.value)];
+      }
       autore.value = '';
       testo.value = '';
     } else {

@@ -1,6 +1,6 @@
 export class PostEComm{
     posts: Post[]
-    commenti: Comment[]
+    comments: Comment[]
 }
 
 export class Post{
@@ -25,14 +25,17 @@ export class Post{
 }
 
 export class Comment{
-    public testo: string
-    public id:number
-    public autore:string
+    public testo: string;
+    public id:number;
+    public autore:string;
+    public idpost: number;
+    push: any
 
-    constructor(id:number, autore:string,testo: string){
+    constructor( autore:string,testo: string, id?:number, idpost?: number){
         this.testo = testo
-        this.id=id
+        this.id=id || 0
         this.autore=autore
+        this.idpost = idpost;
 
     }
 }

@@ -9,13 +9,12 @@
         <textarea #newtesto id="testo" placeholder="testo" class="form-control"></textarea>
       </div>
       <br>
-      <button type="button" style="float: right;" (click)="posta(newautore, newtesto)" class="btn btn-primary">
-        Posta
+      <button type="button" style="float: right;" (click)="posta(newautore, newtesto)" class="btn btn-primary fa fa-paper-plane">
       </button>
     </form>
   
     <div class="container">
-      <app-post [post]="data.posts" ></app-post>
+      <app-post [post]="data.posts" [comment]="data.comments"></app-post>
     </div>
   </div>
   

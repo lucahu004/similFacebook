@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Post } from '../models/postEcomm.models';
+import { Post, Comment } from '../models/postEcomm.models';
 
 @Component({
   selector: 'app-post',
@@ -8,7 +8,7 @@ import { Post } from '../models/postEcomm.models';
 })
 export class PostComponent {
   @Input() post: Post[];
-  @Input() comment: Comment[];
+  @Input() comment: Comment[] = [];
   comment_appear:number
   error_appear:boolean
   router: any;
@@ -35,13 +35,20 @@ export class PostComponent {
     }
   }
 
-  add_comment(commento: HTMLTextAreaElement){
-    if (commento.value == ''){
-      this.error_appear = true
-    }else{
+  add_comment(autore: HTMLInputElement, testo: HTMLTextAreaElement, idpost: number){
+    if (autore.value !== '' && testo.value !== ''){
       this.error_appear = false
-      //this.post.add_comment(commento.value)
-      commento.value = ''
+      if (Array.isArray(this.comment)) {
+        this.comment.push(new Comment(autore.value, testo.value, idpost));
+      } else {
+        this.comment = [new Comment(autore.value, testo.value, idpost)];
+      }
+      autore.value = '';
+      testo.value = '';
+    }else{
+      this.error_appear = true
+      autore.value = ''
+      testo.value = ''
     }
-    }
+  }
 }
